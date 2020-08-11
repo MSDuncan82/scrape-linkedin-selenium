@@ -5,8 +5,10 @@ import math
 import re
 
 options = Options()
-options.add_argument('--headless')
-HEADLESS_OPTIONS = {'chrome_options': options}
+options.add_argument("--headless")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
+HEADLESS_OPTIONS = {"chrome_options": options}
 
 
 def flatten_list(l):
