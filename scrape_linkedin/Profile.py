@@ -37,16 +37,17 @@ class Profile(ResultsObject):
             image_element = one_or_default(
                 top_card, 'img.pv-top-card-section__photo')
 
+        while not image_element:
+            for num in range(1000):
+                image_element = one_or_default(self.soup, f"#ember{num}")
         # Set image url to the src of the image html tag, if it exists
         try:
             image_url = image_element['src']
         except:
             pass
+
         
-        if image_url:
-            personal_info['image'] = image_url
-        else:
-            personal_info['image'] = one_or_default(top_card, 'pv-top-card-section__photo.presence-entity__image')['src']
+        personal_info['image'] = image_url
 
         followers_text = text_or_default(self.soup,
                                          '.pv-recent-activity-section__follower-count', '')
