@@ -39,8 +39,9 @@ class Profile(ResultsObject):
 
             for num in range(1000):
                 image_element = one_or_default(self.soup, f"#ember{num}")
-                if "src" in image_element:
-                    break
+                if image_element:
+                    if "src" in image_element:
+                        break
         # Set image url to the src of the image html tag, if it exists
         try:
             image_url = image_element['src']
