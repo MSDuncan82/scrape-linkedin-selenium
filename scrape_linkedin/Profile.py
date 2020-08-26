@@ -42,8 +42,11 @@ class Profile(ResultsObject):
             image_url = image_element['src']
         except:
             pass
-
-        personal_info['image'] = image_url
+        
+        if image_url:
+            personal_info['image'] = image_url
+        else:
+            personal_info['image'] = one_or_default(top_card, 'pv-top-card-section__photo.presence-entity__image')['src']
 
         followers_text = text_or_default(self.soup,
                                          '.pv-recent-activity-section__follower-count', '')
